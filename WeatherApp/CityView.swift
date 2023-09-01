@@ -9,10 +9,19 @@ import SwiftUI
 
 struct CityView: View {
     
+    enum TemperatureUnit: String, CaseIterable {
+        case celsius
+        case fahrenheit
+    }
+    
+    @State private var temperatureUnit: TemperatureUnit = .celsius
+    
     var body: some View {
-        VStack() {
-            mainContent
-                .padding(.bottom, 150)
+        VStack(spacing: 100) {
+            VStack {
+                mainContent
+                temperatureUnitPicker
+            }
             Button("Search City", action: {
                 
             })
@@ -47,6 +56,15 @@ struct CityView: View {
                 Text("L: 10°")
             }
         }
+    }
+    
+    private var temperatureUnitPicker: some View {
+        Picker("Temperature Unit", selection: $temperatureUnit) {
+            ForEach(TemperatureUnit.allCases, id: \.self) {
+                Text($0.rawValue.capitalized)
+            }
+        }
+        .pickerStyle(.menu)
     }
 }
 
