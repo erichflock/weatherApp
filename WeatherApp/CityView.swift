@@ -16,7 +16,7 @@ struct CityView: View {
             Button("Search City", action: {
                 
             })
-            .font(.system(size: 20))
+            .controlSize(.large)
             .buttonStyle(.borderedProminent)
         }
     }
