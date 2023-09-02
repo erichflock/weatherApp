@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import CoreLocation
 
 final class CityViewModel: ObservableObject {
     
@@ -15,5 +16,23 @@ final class CityViewModel: ObservableObject {
     }
     
     @State var temperatureUnit: TemperatureUnit = .celsius
+    
+    private let locationManager = LocationManager()
+    
+    init() {
+        locationManager.delegate = self
+    }
+    
+    func requestLocation() {
+        locationManager.requestLocation()
+    }
+    
+}
+
+extension CityViewModel: LocationManagerDelegate {
+    
+    func didUpdateLocation(location: CLLocationCoordinate2D?) {
+        print(location)
+    }
     
 }

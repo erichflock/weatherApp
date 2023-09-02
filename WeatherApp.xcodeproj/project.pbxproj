@@ -12,6 +12,7 @@
 		B839E1572AA23B4400DDD9AE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B839E1562AA23B4400DDD9AE /* Assets.xcassets */; };
 		B839E15A2AA23B4400DDD9AE /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B839E1592AA23B4400DDD9AE /* Preview Assets.xcassets */; };
 		B839E1812AA307D000DDD9AE /* CityViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B839E1802AA307D000DDD9AE /* CityViewModel.swift */; };
+		B839E1852AA3095200DDD9AE /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B839E1842AA3095200DDD9AE /* LocationManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -34,6 +35,7 @@
 		B839E1602AA23B4400DDD9AE /* WeatherAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WeatherAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B839E17D2AA2626000DDD9AE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		B839E1802AA307D000DDD9AE /* CityViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityViewModel.swift; sourceTree = "<group>"; };
+		B839E1842AA3095200DDD9AE /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -75,6 +77,7 @@
 		B839E1512AA23B4300DDD9AE /* WeatherApp */ = {
 			isa = PBXGroup;
 			children = (
+				B839E1822AA3094000DDD9AE /* Managers */,
 				B839E17E2AA306FB00DDD9AE /* Views */,
 				B839E17D2AA2626000DDD9AE /* Info.plist */,
 				B839E1522AA23B4300DDD9AE /* WeatherAppApp.swift */,
@@ -115,6 +118,22 @@
 				B839E1802AA307D000DDD9AE /* CityViewModel.swift */,
 			);
 			path = City;
+			sourceTree = "<group>";
+		};
+		B839E1822AA3094000DDD9AE /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				B839E1832AA3094500DDD9AE /* Location */,
+			);
+			path = Managers;
+			sourceTree = "<group>";
+		};
+		B839E1832AA3094500DDD9AE /* Location */ = {
+			isa = PBXGroup;
+			children = (
+				B839E1842AA3095200DDD9AE /* LocationManager.swift */,
+			);
+			path = Location;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -217,6 +236,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B839E1852AA3095200DDD9AE /* LocationManager.swift in Sources */,
 				B839E1552AA23B4300DDD9AE /* CityView.swift in Sources */,
 				B839E1812AA307D000DDD9AE /* CityViewModel.swift in Sources */,
 				B839E1532AA23B4300DDD9AE /* WeatherAppApp.swift in Sources */,

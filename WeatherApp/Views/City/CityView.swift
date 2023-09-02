@@ -6,22 +6,29 @@
 //
 
 import SwiftUI
+import CoreLocationUI
 
 struct CityView: View {
     
-    @ObservedObject var viewModel: CityViewModel
+    @ObservedObject var viewModel: CityViewModel = .init()
     
     var body: some View {
         VStack(spacing: 100) {
-            VStack {
-                mainContent
-                temperatureUnitPicker
+            ZStack {
+                VStack {
+                    mainContent
+                    temperatureUnitPicker
+                }
+                HStack {
+                    Spacer()
+                    locationButton
+                        .padding(.trailing, 50)
+                }
             }
-            Button("Search City", action: {
-                
-            })
-            .controlSize(.large)
-            .buttonStyle(.borderedProminent)
+            
+            VStack(spacing: 20) {
+                searchButton
+            }
         }
     }
     
@@ -61,10 +68,27 @@ struct CityView: View {
         }
         .pickerStyle(.menu)
     }
+    
+    private var locationButton: some View {
+        LocationButton() {
+            viewModel.requestLocation()
+        }
+        .cornerRadius(10)
+        .labelStyle(.iconOnly)
+        .foregroundColor(.white)
+    }
+    
+    private var searchButton: some View {
+        Button("Search City", action: {
+            
+        })
+        .controlSize(.large)
+        .buttonStyle(.borderedProminent)
+    }
 }
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        CityView(viewModel: .init())
+        CityView()
     }
 }
