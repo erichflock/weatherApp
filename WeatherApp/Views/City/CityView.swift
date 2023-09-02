@@ -31,34 +31,43 @@ struct CityView: View {
     
     private var mainContent: some View {
         VStack(alignment: .center, spacing: 8) {
-            VStack(alignment: .leading) {
-                Text("Leipzig")
+            if let cityName = viewModel.weather?.name {
+                Text(cityName)
                     .font(.largeTitle)
-                Text("30°")
+            }
+            if let actualTemperature = viewModel.format(temperature: viewModel.weather?.actualTemperature) {
+                Text("\(actualTemperature)°")
                     .font(.system(size: 80))
             }
-            HStack {
-                VStack {
-                    Text("Rain")
+            VStack(spacing: 8) {
+                if let imageName = viewModel.weather?.condition?.imageName {
+                    Image(systemName: imageName)
+                        .symbolRenderingMode(.palette)
+                        .foregroundStyle(.gray, .blue)
+                        .font(.system(size: 30))
+                }
+                if let condition = viewModel.weather?.condition?.name {
+                    Text(condition)
                         .font(.system(size: 20))
-                    Text("moderate rain")
+                }
+                if let description = viewModel.weather?.description {
+                    Text(description)
                         .font(.system(size: 16))
                         .foregroundColor(.secondary)
                 }
-                Image(systemName: "cloud.rain.fill")
-                    .symbolRenderingMode(.palette)
-                    .foregroundStyle(.gray, .blue)
-                    .font(.system(size: 20))
             }
             HStack {
-                Text("H: 20°")
-                Text("L: 10°")
+                if let maxTemp = viewModel.format(temperature: viewModel.weather?.maxTemperature),
+                   let minTemp = viewModel.format(temperature: viewModel.weather?.minTemperature) {
+                    Text("H: \(maxTemp)°")
+                    Text("L: \(minTemp)°")
+                }
             }
         }
     }
     
     private var temperatureUnitPicker: some View {
-        Picker("Temperature Unit", selection: $viewModel.temperatureUnit) {
+        Picker("Unit", selection: $viewModel.temperatureUnit) {
             ForEach(CityViewModel.TemperatureUnit.allCases, id: \.self) {
                 Text($0.rawValue.capitalized)
             }

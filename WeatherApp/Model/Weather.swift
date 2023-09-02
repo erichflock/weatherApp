@@ -51,6 +51,10 @@ struct Weather {
                 return "cloud.fill"
             }
         }
+        
+        var name: String {
+            self.rawValue.capitalized
+        }
     }
 }
 

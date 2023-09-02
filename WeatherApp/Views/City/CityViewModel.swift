@@ -52,6 +52,12 @@ final class CityViewModel: ObservableObject {
             }
         }
     }
+    
+    func format(temperature: Double?) -> String? {
+        guard let temperature else { return nil }
+        
+        return String(format: "%.0f", temperature)
+    }
 }
 
 extension CityViewModel: LocationManagerDelegate {
