@@ -68,7 +68,7 @@ struct CityView: View {
     
     private var temperatureUnitPicker: some View {
         Picker("Unit", selection: $viewModel.temperatureUnit) {
-            ForEach(CityViewModel.TemperatureUnit.allCases, id: \.self) {
+            ForEach(TemperatureUnit.allCases, id: \.self) {
                 Text($0.rawValue.capitalized)
             }
         }

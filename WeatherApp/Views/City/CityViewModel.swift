@@ -10,12 +10,11 @@ import CoreLocation
 
 final class CityViewModel: ObservableObject {
     
-    enum TemperatureUnit: String, CaseIterable {
-        case celsius
-        case fahrenheit
+    @Published var temperatureUnit: TemperatureUnit = .celsius {
+        didSet {
+            fetchWeatherData()
+        }
     }
-    
-    @State var temperatureUnit: TemperatureUnit = .celsius
     
     private let locationManager = LocationManager()
     private let currentWeatherAPI: CurrentWeatherAPIProtocol
@@ -24,9 +23,7 @@ final class CityViewModel: ObservableObject {
     
     private var location: CLLocationCoordinate2D? {
         didSet {
-            guard let lat = location?.latitude, let lon = location?.longitude else { return }
-            
-            fetchWeatherData(lat: lat, lon: lon)
+            fetchWeatherData()
         }
     }
     
@@ -40,10 +37,12 @@ final class CityViewModel: ObservableObject {
         locationManager.requestLocation()
     }
     
-    func fetchWeatherData(lat: Double, lon: Double) {
+    func fetchWeatherData() {
+        guard let lat = location?.latitude, let lon = location?.longitude else { return }
+        
         Task {
             do {
-                let responseApiModel = try await currentWeatherAPI.fetchData(lat: lat, lon: lon, units: .metric)
+                let responseApiModel = try await currentWeatherAPI.fetchData(lat: lat, lon: lon, units: temperatureUnit.convertToApiUnit())
                 DispatchQueue.main.async { [weak self] in
                     self?.weather = Weather.mapper(apiModel: responseApiModel)
                 }
@@ -58,6 +57,7 @@ final class CityViewModel: ObservableObject {
         
         return String(format: "%.0f", temperature)
     }
+    
 }
 
 extension CityViewModel: LocationManagerDelegate {

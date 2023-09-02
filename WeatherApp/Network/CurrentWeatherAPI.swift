@@ -14,8 +14,8 @@ enum CurrentWeatherAPIError: Error {
 }
 
 enum CurrentWeatherAPIUnit: String {
-    case metric //celsius
-    case imperial //fahrenheit
+    case metric
+    case imperial
 }
 
 protocol CurrentWeatherAPIProtocol: AnyObject {
