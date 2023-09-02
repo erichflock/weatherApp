@@ -38,7 +38,7 @@ class CurrentWeatherAPI {
             decoder.keyDecodingStrategy = .convertFromSnakeCase
             let responseModel = try decoder.decode(CurrentWeatherAPIResponseModel.self, from: data)
             return responseModel
-        } catch(let error) {
+        } catch {
             throw CurrentWeatherAPIError.decodeError
         }
     }
