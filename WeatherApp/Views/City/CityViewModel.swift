@@ -54,7 +54,6 @@ final class CityViewModel: ObservableObject {
                 }
             } catch {
                 setLoading(false)
-                //TODO: Display Error Alert
             }
         }
     }
@@ -81,7 +80,6 @@ extension CityViewModel: LocationManagerDelegate {
     }
     
     func didFailToUpdateLocationWithError(_ error: Error) {
-        //TODO: Display alert with error
         setLoading(false)
     }
     
