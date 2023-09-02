@@ -30,7 +30,7 @@ extension URLSession: URLSessionProtocol {}
 
 final class CurrentWeatherAPI: CurrentWeatherAPIProtocol {
     
-    private let API_KEY = "d6495dcccbfb797c02434b7be903246e"
+    private let API_KEY = ""
     private let baseUrl = "https://api.openweathermap.org/data/2.5/weather"
     
     var urlSession: URLSessionProtocol = URLSession.shared
