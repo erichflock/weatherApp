@@ -13,22 +13,33 @@ enum CurrentWeatherAPIError: Error {
     case fetchError
 }
 
-protocol URLSessionProtocol {
+enum CurrentWeatherAPIUnit: String {
+    case metric //celsius
+    case imperial //fahrenheit
+}
+
+protocol CurrentWeatherAPIProtocol: AnyObject {
+    func fetchData(lat: Double, lon: Double, units: CurrentWeatherAPIUnit) async throws -> CurrentWeatherAPIResponseModel?
+}
+
+protocol URLSessionProtocol: AnyObject {
     func data(from url: URL, delegate: URLSessionTaskDelegate?) async throws -> (Data, URLResponse)
 }
 
 extension URLSession: URLSessionProtocol {}
 
-class CurrentWeatherAPI {
+final class CurrentWeatherAPI: CurrentWeatherAPIProtocol {
     
-    let API_KEY = ""
+    private let API_KEY = ""
+    private let baseUrl = "https://api.openweathermap.org/data/2.5/weather"
     
     var urlSession: URLSessionProtocol = URLSession.shared
     
-    func fetchData(lat: Double, lon: Double, baseUrl: String = "https://api.openweathermap.org/data/2.5/weather") async throws -> CurrentWeatherAPIResponseModel? {
+    func fetchData(lat: Double, lon: Double, units: CurrentWeatherAPIUnit = .metric) async throws -> CurrentWeatherAPIResponseModel? {
         var urlComponents = URLComponents(string: baseUrl)
         urlComponents?.queryItems = [.init(name: "lat", value: lat.description),
                                      .init(name: "lon", value: lon.description),
+                                     .init(name: "units", value: units.rawValue),
                                      .init(name: "appid", value: API_KEY)]
         guard let url = urlComponents?.url else { throw CurrentWeatherAPIError.invalidUrl }
         

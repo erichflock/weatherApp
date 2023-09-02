@@ -18,8 +18,10 @@ final class CityViewModel: ObservableObject {
     @State var temperatureUnit: TemperatureUnit = .celsius
     
     private let locationManager = LocationManager()
+    private let currentWeatherAPI: CurrentWeatherAPIProtocol
     
-    init() {
+    init(currentWeatherAPI: CurrentWeatherAPIProtocol = CurrentWeatherAPI()) {
+        self.currentWeatherAPI = currentWeatherAPI
         locationManager.delegate = self
         requestLocation()
     }
@@ -33,8 +35,16 @@ final class CityViewModel: ObservableObject {
 extension CityViewModel: LocationManagerDelegate {
     
     func didUpdateLocation(location: CLLocationCoordinate2D?) {
-        print(location)
-        //TODO: Fetch api data
+        guard let lat = location?.latitude, let lon = location?.longitude else { return }
+        
+        Task {
+            do {
+                let responseApiModel = try await currentWeatherAPI.fetchData(lat: lat, lon: lon, units: .metric)
+                print(responseApiModel)
+            } catch {
+                //TODO: Display Error Alert
+            }
+        }
     }
     
     func didFailToUpdateLocationWithError(_ error: Error) {
