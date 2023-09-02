@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B8076A962AA37DF700292CEF /* Weather.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8076A952AA37DF700292CEF /* Weather.swift */; };
 		B839E1532AA23B4300DDD9AE /* WeatherAppApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B839E1522AA23B4300DDD9AE /* WeatherAppApp.swift */; };
 		B839E1552AA23B4300DDD9AE /* CityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B839E1542AA23B4300DDD9AE /* CityView.swift */; };
 		B839E1572AA23B4400DDD9AE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B839E1562AA23B4400DDD9AE /* Assets.xcassets */; };
@@ -28,6 +29,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		B8076A952AA37DF700292CEF /* Weather.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Weather.swift; sourceTree = "<group>"; };
 		B839E14F2AA23B4300DDD9AE /* WeatherApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WeatherApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B839E1522AA23B4300DDD9AE /* WeatherAppApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherAppApp.swift; sourceTree = "<group>"; };
 		B839E1542AA23B4300DDD9AE /* CityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityView.swift; sourceTree = "<group>"; };
@@ -60,6 +62,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		B8076A932AA37DD900292CEF /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				B8076A952AA37DF700292CEF /* Weather.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		B839E1462AA23B4300DDD9AE = {
 			isa = PBXGroup;
 			children = (
@@ -81,6 +91,7 @@
 		B839E1512AA23B4300DDD9AE /* WeatherApp */ = {
 			isa = PBXGroup;
 			children = (
+				B8076A932AA37DD900292CEF /* Model */,
 				B839E1862AA3241E00DDD9AE /* Network */,
 				B839E1822AA3094000DDD9AE /* Managers */,
 				B839E17E2AA306FB00DDD9AE /* Views */,
@@ -263,6 +274,7 @@
 				B839E1552AA23B4300DDD9AE /* CityView.swift in Sources */,
 				B839E1812AA307D000DDD9AE /* CityViewModel.swift in Sources */,
 				B839E1532AA23B4300DDD9AE /* WeatherAppApp.swift in Sources */,
+				B8076A962AA37DF700292CEF /* Weather.swift in Sources */,
 				B839E1882AA32D6C00DDD9AE /* CurrentWeatherAPI.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
