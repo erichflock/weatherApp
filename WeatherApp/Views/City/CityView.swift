@@ -21,6 +21,8 @@ struct CityView: View {
                             .controlSize(.large)
                     } else if viewModel.deniedPermission {
                         deniedPermissionView
+                    } else if viewModel.weather == nil {
+                        noDataAvailableView
                     } else {
                         mainContent
                         temperatureUnitPicker
@@ -32,7 +34,13 @@ struct CityView: View {
                         .padding(.trailing, 50)
                 }
             }
+            .frame(height: 300)
+            .padding(.top, 150)
+            
+            Spacer()
+            
             searchButton
+                .padding(.bottom, 100)
         }
     }
     
@@ -112,6 +120,23 @@ struct CityView: View {
                 .font(.system(size: 50))
         }
         .padding(.bottom, 50)
+    }
+    
+    private var noDataAvailableView: some View {
+        VStack {
+            VStack(spacing: 25) {
+                Text("Sorry, no data available. Please try it again later")
+                    .font(.system(size: 18))
+                    .foregroundStyle(.secondary)
+                    .multilineTextAlignment(.center)
+                    .padding(.horizontal, 110)
+                Image(systemName: "icloud.slash.fill")
+                    .symbolRenderingMode(.palette)
+                    .foregroundStyle(.blue)
+                    .font(.system(size: 50))
+            }
+            .padding(.bottom, 50)
+        }
     }
 }
 
