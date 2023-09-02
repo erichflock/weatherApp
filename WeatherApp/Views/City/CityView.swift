@@ -9,12 +9,7 @@ import SwiftUI
 
 struct CityView: View {
     
-    enum TemperatureUnit: String, CaseIterable {
-        case celsius
-        case fahrenheit
-    }
-    
-    @State private var temperatureUnit: TemperatureUnit = .celsius
+    @ObservedObject var viewModel: CityViewModel
     
     var body: some View {
         VStack(spacing: 100) {
@@ -59,8 +54,8 @@ struct CityView: View {
     }
     
     private var temperatureUnitPicker: some View {
-        Picker("Temperature Unit", selection: $temperatureUnit) {
-            ForEach(TemperatureUnit.allCases, id: \.self) {
+        Picker("Temperature Unit", selection: $viewModel.temperatureUnit) {
+            ForEach(CityViewModel.TemperatureUnit.allCases, id: \.self) {
                 Text($0.rawValue.capitalized)
             }
         }
@@ -70,6 +65,6 @@ struct CityView: View {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        CityView()
+        CityView(viewModel: .init())
     }
 }
