@@ -61,6 +61,7 @@ struct CurrentWeatherAPIResponseModel: Decodable {
     var coord: Coordinate?
     var weather: [Weather]?
     var main: WeatherInformation?
+    var name: String?
     
     struct Coordinate: Decodable {
         var lon: Double?

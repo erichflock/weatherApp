@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		B8076A962AA37DF700292CEF /* Weather.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8076A952AA37DF700292CEF /* Weather.swift */; };
+		B8076A9A2AA384F500292CEF /* WeatherTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8076A992AA384F500292CEF /* WeatherTests.swift */; };
 		B839E1532AA23B4300DDD9AE /* WeatherAppApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B839E1522AA23B4300DDD9AE /* WeatherAppApp.swift */; };
 		B839E1552AA23B4300DDD9AE /* CityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B839E1542AA23B4300DDD9AE /* CityView.swift */; };
 		B839E1572AA23B4400DDD9AE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B839E1562AA23B4400DDD9AE /* Assets.xcassets */; };
@@ -30,6 +31,7 @@
 
 /* Begin PBXFileReference section */
 		B8076A952AA37DF700292CEF /* Weather.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Weather.swift; sourceTree = "<group>"; };
+		B8076A992AA384F500292CEF /* WeatherTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherTests.swift; sourceTree = "<group>"; };
 		B839E14F2AA23B4300DDD9AE /* WeatherApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WeatherApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B839E1522AA23B4300DDD9AE /* WeatherAppApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherAppApp.swift; sourceTree = "<group>"; };
 		B839E1542AA23B4300DDD9AE /* CityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityView.swift; sourceTree = "<group>"; };
@@ -66,6 +68,14 @@
 			isa = PBXGroup;
 			children = (
 				B8076A952AA37DF700292CEF /* Weather.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		B8076A982AA384E100292CEF /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				B8076A992AA384F500292CEF /* WeatherTests.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -115,6 +125,7 @@
 		B839E1632AA23B4400DDD9AE /* WeatherAppTests */ = {
 			isa = PBXGroup;
 			children = (
+				B8076A982AA384E100292CEF /* Model */,
 				B839E1892AA3432C00DDD9AE /* Network */,
 			);
 			path = WeatherAppTests;
@@ -283,6 +294,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B8076A9A2AA384F500292CEF /* WeatherTests.swift in Sources */,
 				B839E18B2AA3434800DDD9AE /* CurrentWeatherAPITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
