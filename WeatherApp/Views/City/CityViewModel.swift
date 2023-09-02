@@ -21,6 +21,7 @@ final class CityViewModel: ObservableObject {
     
     init() {
         locationManager.delegate = self
+        requestLocation()
     }
     
     func requestLocation() {
@@ -33,6 +34,11 @@ extension CityViewModel: LocationManagerDelegate {
     
     func didUpdateLocation(location: CLLocationCoordinate2D?) {
         print(location)
+        //TODO: Fetch api data
+    }
+    
+    func didFailToUpdateLocationWithError(_ error: Error) {
+        //TODO: Display alert with error
     }
     
 }

@@ -25,10 +25,7 @@ struct CityView: View {
                         .padding(.trailing, 50)
                 }
             }
-            
-            VStack(spacing: 20) {
-                searchButton
-            }
+            searchButton
         }
     }
     

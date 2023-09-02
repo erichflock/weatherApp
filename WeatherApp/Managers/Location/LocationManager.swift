@@ -9,6 +9,7 @@ import CoreLocation
 
 protocol LocationManagerDelegate: AnyObject {
     func didUpdateLocation(location: CLLocationCoordinate2D?)
+    func didFailToUpdateLocationWithError(_ error: Error)
 }
 
 final class LocationManager: NSObject, ObservableObject, CLLocationManagerDelegate {
@@ -22,7 +23,12 @@ final class LocationManager: NSObject, ObservableObject, CLLocationManagerDelega
     }
 
     func requestLocation() {
-        manager.requestLocation()
+        switch manager.authorizationStatus {
+        case .authorizedAlways, .authorizedWhenInUse:
+            manager.requestLocation()
+        default:
+            manager.requestWhenInUseAuthorization()
+        }
     }
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
@@ -30,6 +36,10 @@ final class LocationManager: NSObject, ObservableObject, CLLocationManagerDelega
     }
     
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
-        //TODO: handle error
+        delegate?.didFailToUpdateLocationWithError(error)
+    }
+    
+    func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
+         requestLocation()
     }
 }
