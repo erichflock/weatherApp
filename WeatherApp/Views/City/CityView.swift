@@ -13,11 +13,18 @@ struct CityView: View {
     @ObservedObject var viewModel: CityViewModel = .init()
     
     var body: some View {
-        VStack(spacing: 100) {
+        VStack() {
             ZStack {
                 VStack {
-                    mainContent
-                    temperatureUnitPicker
+                    if viewModel.isLoading {
+                        ProgressView("Loading weather data...")
+                            .controlSize(.large)
+                    } else if viewModel.deniedPermission {
+                        deniedPermissionView
+                    } else {
+                        mainContent
+                        temperatureUnitPicker
+                    }
                 }
                 HStack {
                     Spacer()
@@ -90,6 +97,21 @@ struct CityView: View {
         })
         .controlSize(.large)
         .buttonStyle(.borderedProminent)
+    }
+    
+    private var deniedPermissionView: some View {
+        VStack(spacing: 25) {
+            Text("Sorry, we can only provide weather data if you allow us to use your location or if you search for a city.")
+                .font(.system(size: 18))
+                .foregroundStyle(.secondary)
+                .multilineTextAlignment(.center)
+                .padding(.horizontal, 110)
+            Image(systemName: "globe.americas.fill")
+                .symbolRenderingMode(.palette)
+                .foregroundStyle(.blue)
+                .font(.system(size: 50))
+        }
+        .padding(.bottom, 50)
     }
 }
 

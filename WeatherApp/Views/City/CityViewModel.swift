@@ -20,6 +20,8 @@ final class CityViewModel: ObservableObject {
     private let currentWeatherAPI: CurrentWeatherAPIProtocol
     
     @Published var weather: Weather?
+    @Published var isLoading = false
+    @Published var deniedPermission = false
     
     private var location: CLLocationCoordinate2D? {
         didSet {
@@ -34,19 +36,24 @@ final class CityViewModel: ObservableObject {
     }
     
     func requestLocation() {
+        setLoading(true)
         locationManager.requestLocation()
     }
     
     func fetchWeatherData() {
         guard let lat = location?.latitude, let lon = location?.longitude else { return }
+    
+        setLoading(true)
         
         Task {
             do {
                 let responseApiModel = try await currentWeatherAPI.fetchData(lat: lat, lon: lon, units: temperatureUnit.convertToApiUnit())
                 DispatchQueue.main.async { [weak self] in
                     self?.weather = Weather.mapper(apiModel: responseApiModel)
+                    self?.setLoading(false)
                 }
             } catch {
+                setLoading(false)
                 //TODO: Display Error Alert
             }
         }
@@ -58,16 +65,29 @@ final class CityViewModel: ObservableObject {
         return String(format: "%.0f", temperature)
     }
     
+    private func setLoading(_ isLoading: Bool) {
+        DispatchQueue.main.async { [weak self] in
+            self?.isLoading = isLoading
+        }
+    }
+    
 }
 
 extension CityViewModel: LocationManagerDelegate {
     
     func didUpdateLocation(location: CLLocationCoordinate2D?) {
+        deniedPermission = false
         self.location = location
     }
     
     func didFailToUpdateLocationWithError(_ error: Error) {
         //TODO: Display alert with error
+        setLoading(false)
+    }
+    
+    func didDeniedPermission() {
+        setLoading(false)
+        deniedPermission = true
     }
     
 }

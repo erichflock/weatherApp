@@ -10,6 +10,7 @@ import CoreLocation
 protocol LocationManagerDelegate: AnyObject {
     func didUpdateLocation(location: CLLocationCoordinate2D?)
     func didFailToUpdateLocationWithError(_ error: Error)
+    func didDeniedPermission()
 }
 
 final class LocationManager: NSObject, ObservableObject, CLLocationManagerDelegate {
@@ -40,6 +41,10 @@ final class LocationManager: NSObject, ObservableObject, CLLocationManagerDelega
     }
     
     func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
-         requestLocation()
+        if manager.authorizationStatus == .denied {
+            delegate?.didDeniedPermission()
+        } else {
+            requestLocation()
+        }
     }
 }
