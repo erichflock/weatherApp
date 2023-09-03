@@ -10,10 +10,14 @@ import SwiftUI
 struct SearchCityView: View {
     
     @ObservedObject var viewModel: SearchCityViewModel = .init()
+    @Environment(\.dismiss) var dismiss
     
     var body: some View {
         List {
             Text("Leipzig")
+                .onTapGesture {
+                    dismiss()
+                }
             Text("London")
         }
         .navigationTitle("Search City")
