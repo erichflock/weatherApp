@@ -27,6 +27,7 @@
 		B839E1852AA3095200DDD9AE /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B839E1842AA3095200DDD9AE /* LocationManager.swift */; };
 		B839E1882AA32D6C00DDD9AE /* CurrentWeatherAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = B839E1872AA32D6C00DDD9AE /* CurrentWeatherAPI.swift */; };
 		B839E18B2AA3434800DDD9AE /* CurrentWeatherAPITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B839E18A2AA3434800DDD9AE /* CurrentWeatherAPITests.swift */; };
+		B86260132AA4A217008E91A5 /* City.swift in Sources */ = {isa = PBXBuildFile; fileRef = B86260122AA4A217008E91A5 /* City.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -64,6 +65,7 @@
 		B839E1842AA3095200DDD9AE /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		B839E1872AA32D6C00DDD9AE /* CurrentWeatherAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentWeatherAPI.swift; sourceTree = "<group>"; };
 		B839E18A2AA3434800DDD9AE /* CurrentWeatherAPITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentWeatherAPITests.swift; sourceTree = "<group>"; };
+		B86260122AA4A217008E91A5 /* City.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = City.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -89,6 +91,7 @@
 			children = (
 				B8076A952AA37DF700292CEF /* Weather.swift */,
 				B8076A9C2AA3908B00292CEF /* TemperatureUnit.swift */,
+				B86260122AA4A217008E91A5 /* City.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -341,6 +344,7 @@
 				B8076AA42AA472C600292CEF /* SearchCityView.swift in Sources */,
 				B839E1552AA23B4300DDD9AE /* CityView.swift in Sources */,
 				B8076AA92AA48AF500292CEF /* GeoCodingAPI.swift in Sources */,
+				B86260132AA4A217008E91A5 /* City.swift in Sources */,
 				B839E1812AA307D000DDD9AE /* CityViewModel.swift in Sources */,
 				B839E1532AA23B4300DDD9AE /* WeatherAppApp.swift in Sources */,
 				B8076AB22AA4999000292CEF /* URLSession+Extensions.swift in Sources */,

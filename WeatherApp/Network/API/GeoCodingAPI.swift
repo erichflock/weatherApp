@@ -13,7 +13,7 @@ class GeoCodingAPI {
     
     var urlSession: URLSessionProtocol = URLSession.shared
     
-    func getCities(for city: String, limit: Int = 5) async throws -> [GeoCodingCity]? {
+    func getCities(for city: String, limit: Int = 5) async throws -> [GeoCodingCityAPIModel]? {
         var urlComponents = URLComponents(string: baseUrl)
         urlComponents?.queryItems = [.init(name: "q", value: city),
                                      .init(name: "limit", value: limit.description),
@@ -23,7 +23,7 @@ class GeoCodingAPI {
         do {
             let (data, _) = try await urlSession.data(from: url, delegate: nil)
             let decoder = JSONDecoder()
-            let geoCodingCities = try decoder.decode([GeoCodingCity].self, from: data)
+            let geoCodingCities = try decoder.decode([GeoCodingCityAPIModel].self, from: data)
             return geoCodingCities
         } catch {
             throw APIError.decodeError
@@ -32,7 +32,7 @@ class GeoCodingAPI {
     
 }
 
-struct GeoCodingCity: Decodable {
+struct GeoCodingCityAPIModel: Decodable {
     var name: String?
     var lat: Double?
     var lon: Double?
