@@ -38,5 +38,11 @@ final class WeatherTests: XCTestCase {
         XCTAssertEqual(sut?.maxTemperature, 40.0)
 
     }
-
+    
+    func test_mapper_whenApiModelNotAvailable_shouldReturnNil() {
+        let sut = Weather.mapper(apiModel: nil)
+        
+        XCTAssertNil(sut)
+    }
+    
 }
