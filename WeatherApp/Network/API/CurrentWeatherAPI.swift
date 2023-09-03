@@ -7,12 +7,6 @@
 
 import Foundation
 
-enum CurrentWeatherAPIError: Error {
-    case invalidUrl
-    case decodeError
-    case fetchError
-}
-
 enum CurrentWeatherAPIUnit: String {
     case metric
     case imperial
@@ -22,15 +16,8 @@ protocol CurrentWeatherAPIProtocol: AnyObject {
     func fetchData(lat: Double, lon: Double, units: CurrentWeatherAPIUnit) async throws -> CurrentWeatherAPIResponseModel?
 }
 
-protocol URLSessionProtocol: AnyObject {
-    func data(from url: URL, delegate: URLSessionTaskDelegate?) async throws -> (Data, URLResponse)
-}
-
-extension URLSession: URLSessionProtocol {}
-
 final class CurrentWeatherAPI: CurrentWeatherAPIProtocol {
     
-    private let API_KEY = ""
     private let baseUrl = "https://api.openweathermap.org/data/2.5/weather"
     
     var urlSession: URLSessionProtocol = URLSession.shared
@@ -40,8 +27,8 @@ final class CurrentWeatherAPI: CurrentWeatherAPIProtocol {
         urlComponents?.queryItems = [.init(name: "lat", value: lat.description),
                                      .init(name: "lon", value: lon.description),
                                      .init(name: "units", value: units.rawValue),
-                                     .init(name: "appid", value: API_KEY)]
-        guard let url = urlComponents?.url else { throw CurrentWeatherAPIError.invalidUrl }
+                                     .init(name: "appid", value: NetworkConfig.API_KEY)]
+        guard let url = urlComponents?.url else { throw APIError.invalidUrl }
         
         do {
             let (data, _) = try await urlSession.data(from: url, delegate: nil)
@@ -50,7 +37,7 @@ final class CurrentWeatherAPI: CurrentWeatherAPIProtocol {
             let responseModel = try decoder.decode(CurrentWeatherAPIResponseModel.self, from: data)
             return responseModel
         } catch {
-            throw CurrentWeatherAPIError.decodeError
+            throw APIError.decodeError
         }
     }
     

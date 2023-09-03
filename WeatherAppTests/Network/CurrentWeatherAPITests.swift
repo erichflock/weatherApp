@@ -35,7 +35,7 @@ final class CurrentWeatherAPITests: XCTestCase {
         do {
             _ = try await sut.fetchData(lat: 10.0, lon: 10.0)
         } catch let error {
-            XCTAssertEqual(error as? CurrentWeatherAPIError, .decodeError)
+            XCTAssertEqual(error as? APIError, .decodeError)
             expectation.fulfill()
         }
         
@@ -123,20 +123,6 @@ extension CurrentWeatherAPITests {
        "cod": 200
      }
      """.data(using: .utf8)!
-    }
-    
-}
-
-private class SpyURLSession: URLSessionProtocol {
-    
-    let jsonData: Data
-    
-    init(jsonData: Data) {
-        self.jsonData = jsonData
-    }
-    
-    func data(from url: URL, delegate: URLSessionTaskDelegate?) async throws -> (Data, URLResponse) {
-        (jsonData, .init())
     }
     
 }
