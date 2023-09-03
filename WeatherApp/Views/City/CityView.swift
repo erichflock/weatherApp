@@ -13,34 +13,37 @@ struct CityView: View {
     @ObservedObject var viewModel: CityViewModel = .init()
     
     var body: some View {
-        VStack() {
-            ZStack {
-                VStack {
-                    if viewModel.isLoading {
-                        ProgressView("Loading weather...")
-                            .controlSize(.large)
-                    } else if viewModel.deniedPermission {
-                        deniedPermissionView
-                    } else if viewModel.weather == nil {
-                        noDataAvailableView
-                    } else {
-                        mainContent
-                        temperatureUnitPicker
+        NavigationView {
+            VStack() {
+                ZStack {
+                    VStack {
+                        if viewModel.isLoading {
+                            ProgressView("Loading weather...")
+                                .controlSize(.large)
+                        } else if viewModel.deniedPermission {
+                            deniedPermissionView
+                        } else if viewModel.weather == nil {
+                            noDataAvailableView
+                        } else {
+                            mainContent
+                            temperatureUnitPicker
+                        }
+                    }
+                    HStack {
+                        Spacer()
+                        locationButton
+                            .padding(.trailing, 50)
                     }
                 }
-                HStack {
-                    Spacer()
-                    locationButton
-                        .padding(.trailing, 50)
-                }
+                .frame(height: 300)
+                .padding(.top, 50)
+                
+                Spacer()
+                
+                searchButton
+                    .padding(.bottom, 100)
             }
-            .frame(height: 300)
-            .padding(.top, 150)
-            
-            Spacer()
-            
-            searchButton
-                .padding(.bottom, 100)
+            .navigationTitle("Weather")
         }
     }
     
@@ -100,11 +103,13 @@ struct CityView: View {
     }
     
     private var searchButton: some View {
-        Button("Search City", action: {
-            
-        })
+        NavigationLink {
+            SearchCityView()
+        } label: {
+            Text("Search City")
+        }
         .controlSize(.large)
-        .buttonStyle(.borderedProminent)
+        .buttonStyle(.borderedProminent)        
     }
     
     private var deniedPermissionView: some View {
