@@ -17,7 +17,7 @@ struct CityView: View {
             ZStack {
                 VStack {
                     if viewModel.isLoading {
-                        ProgressView("Loading weather data...")
+                        ProgressView("Loading weather...")
                             .controlSize(.large)
                     } else if viewModel.deniedPermission {
                         deniedPermissionView
