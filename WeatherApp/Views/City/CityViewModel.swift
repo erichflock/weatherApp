@@ -8,7 +8,7 @@
 import SwiftUI
 import CoreLocation
 
-final class CityViewModel: ObservableObject {
+class CityViewModel: ObservableObject {
     
     @Published var temperatureUnit: TemperatureUnit = .celsius {
         didSet {

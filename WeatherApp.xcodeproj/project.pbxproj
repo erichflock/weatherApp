@@ -30,6 +30,7 @@
 		B839E18B2AA3434800DDD9AE /* CurrentWeatherAPITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B839E18A2AA3434800DDD9AE /* CurrentWeatherAPITests.swift */; };
 		B86260132AA4A217008E91A5 /* City.swift in Sources */ = {isa = PBXBuildFile; fileRef = B86260122AA4A217008E91A5 /* City.swift */; };
 		B86260152AA4A2EC008E91A5 /* CityTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B86260142AA4A2EC008E91A5 /* CityTests.swift */; };
+		B8DC5BB32AA657F300D23995 /* CityViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8DC5BB22AA657F300D23995 /* CityViewModelTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -70,6 +71,7 @@
 		B839E18A2AA3434800DDD9AE /* CurrentWeatherAPITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentWeatherAPITests.swift; sourceTree = "<group>"; };
 		B86260122AA4A217008E91A5 /* City.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = City.swift; sourceTree = "<group>"; };
 		B86260142AA4A2EC008E91A5 /* CityTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityTests.swift; sourceTree = "<group>"; };
+		B8DC5BB22AA657F300D23995 /* CityViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityViewModelTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -140,6 +142,7 @@
 		B809F9342AA6173700692D47 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				B8DC5BB12AA657E400D23995 /* City */,
 				B809F9352AA6173D00692D47 /* Search */,
 			);
 			path = Views;
@@ -257,6 +260,14 @@
 				B8076AAC2AA4982500292CEF /* GeoCodingAPITests.swift */,
 			);
 			path = Network;
+			sourceTree = "<group>";
+		};
+		B8DC5BB12AA657E400D23995 /* City */ = {
+			isa = PBXGroup;
+			children = (
+				B8DC5BB22AA657F300D23995 /* CityViewModelTests.swift */,
+			);
+			path = City;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -384,6 +395,7 @@
 				B8076AB02AA4990700292CEF /* SpyURLSession.swift in Sources */,
 				B8076A9A2AA384F500292CEF /* WeatherTests.swift in Sources */,
 				B809F9372AA6176300692D47 /* SearchCityViewModelTests.swift in Sources */,
+				B8DC5BB32AA657F300D23995 /* CityViewModelTests.swift in Sources */,
 				B8076AA12AA3914300292CEF /* TemperatureUnitTests.swift in Sources */,
 				B8076AAD2AA4982500292CEF /* GeoCodingAPITests.swift in Sources */,
 				B86260152AA4A2EC008E91A5 /* CityTests.swift in Sources */,
@@ -539,7 +551,7 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = flock.weatherApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -570,7 +582,7 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = flock.weatherApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -597,7 +609,7 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = flock.weatherAppTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = NO;
@@ -626,7 +638,7 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = flock.weatherAppTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = NO;
