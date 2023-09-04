@@ -14,15 +14,23 @@ struct SearchCityView: View {
     
     var body: some View {
         List {
-            Text("Leipzig")
-                .onTapGesture {
-                    dismiss()
+            ForEach(viewModel.cities) { city in
+                if let name = city.name {
+                    Text(name)
                 }
-            Text("London")
+            }
         }
         .navigationTitle("Search City")
         .searchable(text: $viewModel.searchedCity,
                     placement: .navigationBarDrawer(displayMode: .always),
                     prompt: Text("Search City"))
+        .onChange(of: viewModel.searchedCity) { _ in
+            viewModel.clearCities()
+        }
+        .onSubmit(of: .search) {
+            Task {
+                await viewModel.fetchCities()
+            }
+        }
     }
 }
