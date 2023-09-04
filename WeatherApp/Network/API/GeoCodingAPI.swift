@@ -7,9 +7,13 @@
 
 import Foundation
 
-class GeoCodingAPI {
+protocol GeoCodingAPIProtocol: AnyObject {
+    func getCities(for city: String, limit: Int) async throws -> [GeoCodingCityAPIModel]?
+}
+
+class GeoCodingAPI: GeoCodingAPIProtocol {
     
-    private let baseUrl = "http://api.openweathermap.org/geo/1.0/direct"
+    private let baseUrl = "https://api.openweathermap.org/geo/1.0/direct"
     
     var urlSession: URLSessionProtocol = URLSession.shared
     
