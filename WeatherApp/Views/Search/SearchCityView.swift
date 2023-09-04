@@ -9,7 +9,7 @@ import SwiftUI
 
 struct SearchCityView: View {
     
-    @ObservedObject var viewModel: SearchCityViewModel = .init()
+    @ObservedObject var viewModel: SearchCityViewModel
     @Environment(\.dismiss) var dismiss
     
     var body: some View {
@@ -17,6 +17,10 @@ struct SearchCityView: View {
             ForEach(viewModel.cities) { city in
                 if let title = viewModel.createTitle(for: city) {
                     Text(title)
+                        .onTapGesture {
+                            viewModel.didSelect(city: city)
+                            dismiss()
+                        }
                 }
             }
         }

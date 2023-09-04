@@ -6,13 +6,14 @@
 //
 
 import XCTest
+import CoreLocation
+import SwiftUI
 @testable import WeatherApp
-
 
 final class SearchCityViewModelTests: XCTestCase {
 
     func test_clearCities_whenCalled_shouldRemoveCities() {
-        let sut = SearchCityViewModel(geoCodingAPI: GeoCodingAPISpy())
+        let sut = makeSUT()
         sut.cities = [.init(), .init()]
         XCTAssertFalse(sut.cities.isEmpty, "precondition")
         
@@ -23,7 +24,7 @@ final class SearchCityViewModelTests: XCTestCase {
     
     func test_fethCities_whenSearchedCityEmpty_shouldNotCallGetCitiesOnGeoCodingAPI() async {
         let geoCodingAPISpy = GeoCodingAPISpy()
-        let sut = SearchCityViewModel(geoCodingAPI: geoCodingAPISpy)
+        let sut = makeSUT(geoCodingAPI: geoCodingAPISpy)
         XCTAssertTrue(sut.searchedCity.isEmpty, "precondition")
         XCTAssertEqual(geoCodingAPISpy.getCitiesCallCount, 0, "precondition")
         
@@ -37,7 +38,7 @@ final class SearchCityViewModelTests: XCTestCase {
                                                                   .init(name: "City of London")]
         let geoCodingAPISpy = GeoCodingAPISpy()
         geoCodingAPISpy.apiCities = expectedReturnedApiCities
-        let sut = SearchCityViewModel(geoCodingAPI: geoCodingAPISpy)
+        let sut = makeSUT(geoCodingAPI: geoCodingAPISpy)
         sut.searchedCity = "London"
         XCTAssertFalse(sut.searchedCity.isEmpty, "precondition")
         XCTAssertEqual(geoCodingAPISpy.getCitiesCallCount, 0, "precondition")
@@ -54,7 +55,7 @@ final class SearchCityViewModelTests: XCTestCase {
                                                                   .init(name: "City of London")]
         let geoCodingAPISpy = GeoCodingAPISpy()
         geoCodingAPISpy.apiCities = expectedReturnedApiCities
-        let sut = SearchCityViewModel(geoCodingAPI: geoCodingAPISpy)
+        let sut = makeSUT(geoCodingAPI: geoCodingAPISpy)
         sut.searchedCity = "London"
         XCTAssertFalse(sut.searchedCity.isEmpty, "precondition")
         XCTAssertEqual(geoCodingAPISpy.getCitiesCallCount, 0, "precondition")
@@ -73,7 +74,7 @@ final class SearchCityViewModelTests: XCTestCase {
     func test_fethCities_whenThrowsError_shouldClearCities() async {
         let geoCodingAPISpy = GeoCodingAPISpy()
         geoCodingAPISpy.error = APIError.fetchError
-        let sut = SearchCityViewModel(geoCodingAPI: geoCodingAPISpy)
+        let sut = makeSUT(geoCodingAPI: geoCodingAPISpy)
         sut.searchedCity = "London"
         sut.cities = [.init(), .init()]
         XCTAssertFalse(sut.searchedCity.isEmpty, "precondition")
@@ -90,7 +91,7 @@ final class SearchCityViewModelTests: XCTestCase {
         let city: City = .init(name: "London",
                                country: "GB",
                                state: "England")
-        let sut = SearchCityViewModel(geoCodingAPI: GeoCodingAPISpy())
+        let sut = makeSUT()
         
         let title = sut.createTitle(for: city)
         
@@ -100,7 +101,7 @@ final class SearchCityViewModelTests: XCTestCase {
     func test_createTitleForCity_whenCityAndCountryAvailable_shouldReturnTitleWithCityAndCountry() {
         let city: City = .init(name: "London",
                                country: "GB")
-        let sut = SearchCityViewModel(geoCodingAPI: GeoCodingAPISpy())
+        let sut = makeSUT()
         
         let title = sut.createTitle(for: city)
         
@@ -110,7 +111,7 @@ final class SearchCityViewModelTests: XCTestCase {
     func test_createTitleForCity_whenCityAndStateAvailable_shouldReturnTitleWithCityAndState() {
         let city: City = .init(name: "London",
                                state: "England")
-        let sut = SearchCityViewModel(geoCodingAPI: GeoCodingAPISpy())
+        let sut = makeSUT()
         
         let title = sut.createTitle(for: city)
         
@@ -123,12 +124,54 @@ final class SearchCityViewModelTests: XCTestCase {
         let cityWitCountry: City = .init(country: "GB")
         let cityWitState: City = .init(state: "Engalnd")
         let emptyCity: City = .init()
-        let sut = SearchCityViewModel(geoCodingAPI: GeoCodingAPISpy())
+        let sut = makeSUT()
         
         XCTAssertNil(sut.createTitle(for: cityWitCountryAndState))
         XCTAssertNil(sut.createTitle(for: cityWitCountry))
         XCTAssertNil(sut.createTitle(for: cityWitState))
         XCTAssertNil(sut.createTitle(for: emptyCity))
+    }
+    
+    func test_didSelectCity_whenCitySelected_shouldUpdateLocation() {
+        let city: City = .init(name: "London",
+                               lat: 10,
+                               lon: -10,
+                               country: "GB",
+                               state: "England")
+        let sut = makeSUT()
+        XCTAssertNil(sut.location, "precondition")
+        
+        sut.didSelect(city: city)
+        
+        XCTAssertNotNil(sut.location)
+        XCTAssertEqual(sut.location?.latitude, city.lat)
+        XCTAssertEqual(sut.location?.longitude, city.lon)
+    }
+    
+    func test_didSelectCity_whenCitySelectedHasNoLat_shouldNotUpdateLocation() {
+        let city: City = .init(name: "London",
+                               lon: -10,
+                               country: "GB",
+                               state: "England")
+        let sut = makeSUT()
+        XCTAssertNil(sut.location, "precondition")
+        
+        sut.didSelect(city: city)
+        
+        XCTAssertNil(sut.location)
+    }
+    
+    func test_didSelectCity_whenCitySelectedHasNoLon_shouldNotUpdateLocation() {
+        let city: City = .init(name: "London",
+                               lat: 10,
+                               country: "GB",
+                               state: "England")
+        let sut = makeSUT()
+        XCTAssertNil(sut.location, "precondition")
+        
+        sut.didSelect(city: city)
+        
+        XCTAssertNil(sut.location)
     }
     
 }
@@ -140,6 +183,15 @@ extension SearchCityViewModelTests {
         try? await Task.sleep(for: .seconds(delayInSeconds))
     }
     
+    private func makeSUT(geoCodingAPI: GeoCodingAPIProtocol = GeoCodingAPISpy()) -> SearchCityViewModel {
+        @ObservedObject var locationMock = LocationMock()
+        return .init(location: $locationMock.location, geoCodingAPI: geoCodingAPI)
+    }
+    
+}
+
+private class LocationMock: ObservableObject {
+    @Published var location: CLLocationCoordinate2D?
 }
 
 private class GeoCodingAPISpy: GeoCodingAPIProtocol {

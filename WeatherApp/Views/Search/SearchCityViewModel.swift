@@ -6,15 +6,18 @@
 //
 
 import SwiftUI
+import CoreLocation
 
 final class SearchCityViewModel: ObservableObject {
     
     @Published var searchedCity: String = ""
     @Published var cities: [City] = []
+    @Binding private(set) var location: CLLocationCoordinate2D?
     
     private let geoCodingAPI: GeoCodingAPIProtocol
     
-    init(geoCodingAPI: GeoCodingAPIProtocol = GeoCodingAPI()) {
+    init(location: Binding<CLLocationCoordinate2D?>, geoCodingAPI: GeoCodingAPIProtocol = GeoCodingAPI()) {
+        self._location = location
         self.geoCodingAPI = geoCodingAPI
     }
     
@@ -35,7 +38,7 @@ final class SearchCityViewModel: ObservableObject {
     func createTitle(for city: City) -> String? {
         guard let cityName = city.name else { return nil }
         
-        return [city.name, city.country, city.state].compactMap { $0 }.joined(separator: ", ")
+        return [cityName, city.country, city.state].compactMap { $0 }.joined(separator: ", ")
     }
     
     private func update(cities: [City]?) {
@@ -47,5 +50,11 @@ final class SearchCityViewModel: ObservableObject {
         DispatchQueue.main.async { [weak self] in
             self?.cities = cities
         }
+    }
+    
+    func didSelect(city: City) {
+        guard let cityLat = city.lat, let cityLon = city.lon else { return }
+        
+        location = .init(latitude: cityLat, longitude: cityLon)
     }
 }

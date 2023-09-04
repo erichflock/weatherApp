@@ -104,7 +104,7 @@ struct CityView: View {
     
     private var searchButton: some View {
         NavigationLink {
-            SearchCityView()
+            SearchCityView(viewModel: .init(location: $viewModel.location))
         } label: {
             Text("Search City")
         }

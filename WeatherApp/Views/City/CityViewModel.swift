@@ -23,7 +23,7 @@ final class CityViewModel: ObservableObject {
     @Published var isLoading = false
     @Published var deniedPermission = false
     
-    private var location: CLLocationCoordinate2D? {
+    @Published var location: CLLocationCoordinate2D? {
         didSet {
             fetchWeatherData()
         }
