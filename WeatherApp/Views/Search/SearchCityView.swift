@@ -15,8 +15,8 @@ struct SearchCityView: View {
     var body: some View {
         List {
             ForEach(viewModel.cities) { city in
-                if let name = city.name {
-                    Text(name)
+                if let title = viewModel.createTitle(for: city) {
+                    Text(title)
                 }
             }
         }

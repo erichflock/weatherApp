@@ -86,6 +86,51 @@ final class SearchCityViewModelTests: XCTestCase {
         XCTAssertTrue(sut.cities.isEmpty)
     }
     
+    func test_createTitleForCity_whenCityCountryAndStateAvailable_shouldReturnTitleWithCityCountryAndState() {
+        let city: City = .init(name: "London",
+                               country: "GB",
+                               state: "England")
+        let sut = SearchCityViewModel(geoCodingAPI: GeoCodingAPISpy())
+        
+        let title = sut.createTitle(for: city)
+        
+        XCTAssertEqual(title, "London, GB, England")
+    }
+    
+    func test_createTitleForCity_whenCityAndCountryAvailable_shouldReturnTitleWithCityAndCountry() {
+        let city: City = .init(name: "London",
+                               country: "GB")
+        let sut = SearchCityViewModel(geoCodingAPI: GeoCodingAPISpy())
+        
+        let title = sut.createTitle(for: city)
+        
+        XCTAssertEqual(title, "London, GB")
+    }
+    
+    func test_createTitleForCity_whenCityAndStateAvailable_shouldReturnTitleWithCityAndState() {
+        let city: City = .init(name: "London",
+                               state: "England")
+        let sut = SearchCityViewModel(geoCodingAPI: GeoCodingAPISpy())
+        
+        let title = sut.createTitle(for: city)
+        
+        XCTAssertEqual(title, "London, England")
+    }
+    
+    func test_createTitleForCity_whenNoCityName_shouldReturnNil() {
+        let cityWitCountryAndState: City = .init(country: "GB",
+                                                 state: "England")
+        let cityWitCountry: City = .init(country: "GB")
+        let cityWitState: City = .init(state: "Engalnd")
+        let emptyCity: City = .init()
+        let sut = SearchCityViewModel(geoCodingAPI: GeoCodingAPISpy())
+        
+        XCTAssertNil(sut.createTitle(for: cityWitCountryAndState))
+        XCTAssertNil(sut.createTitle(for: cityWitCountry))
+        XCTAssertNil(sut.createTitle(for: cityWitState))
+        XCTAssertNil(sut.createTitle(for: emptyCity))
+    }
+    
 }
 
 //MARK: Helpers

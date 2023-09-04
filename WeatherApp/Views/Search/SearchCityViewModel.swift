@@ -32,6 +32,12 @@ final class SearchCityViewModel: ObservableObject {
         update(cities: nil)
     }
     
+    func createTitle(for city: City) -> String? {
+        guard let cityName = city.name else { return nil }
+        
+        return [city.name, city.country, city.state].compactMap { $0 }.joined(separator: ", ")
+    }
+    
     private func update(cities: [City]?) {
         guard let cities else {
             self.cities = []
