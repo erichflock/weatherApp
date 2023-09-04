@@ -5,7 +5,10 @@
 //  Created by Erich.Flock on 03.09.23.
 //
 
-struct City {
+import Foundation
+
+struct City: Identifiable {
+    let id = UUID()
     var name: String?
     var lat: Double?
     var lon: Double?
