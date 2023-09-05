@@ -36,5 +36,8 @@ struct SearchCityView: View {
                 await viewModel.fetchCities()
             }
         }
+        .background(
+            WeatherGradientView()
+        )
     }
 }

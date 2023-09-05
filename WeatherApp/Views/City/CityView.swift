@@ -36,13 +36,16 @@ struct CityView: View {
                     }
                 }
                 .frame(height: 300)
-                .padding(.top, 50)
+                .padding(.top, 70)
                 
                 Spacer()
                 
                 searchButton
                     .padding(.bottom, 100)
             }
+            .background(
+                WeatherGradientView()
+            )
             .navigationTitle("Weather")
         }
     }
