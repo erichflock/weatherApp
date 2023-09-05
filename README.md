@@ -15,12 +15,17 @@ Design decisions:
 * To allow tests in the network layer, the technique of protocols was used. This was also done to avoid network communication during unit tests since the object responsible for making the API calls can be easily replaced by one that conforms to the API protocol.
 * External communication is done using the new swift async calls to avoid using closures and use the new state of the art for this matter.
 
-Demo Videos:
+Demo dark mode:
+https://github.com/erichflock/weatherApp/assets/10236662/0079eeb8-dfbd-4f83-8245-f1aa0c7c1e4e
+
+Demo light mode:
+https://github.com/erichflock/weatherApp/assets/10236662/eda26763-d07e-43e5-896c-9d016365f8b0
 
 Screenshots:
 
-
-
-
+![Weather_Celsius](https://github.com/erichflock/weatherApp/assets/10236662/582d0145-3e9e-4ed8-8e44-d1ad7ab85786)
+![Weather_Fahrenheit](https://github.com/erichflock/weatherApp/assets/10236662/13ca5e6a-3bc9-4f18-b73c-8e2f4b1fd9ee)
+![Search_Empty](https://github.com/erichflock/weatherApp/assets/10236662/a114a114-14fc-4dd8-bfaa-0a54240592bd)
+![Search_Results](https://github.com/erichflock/weatherApp/assets/10236662/fed243ff-2544-4c4c-94db-f624d6b7eca8)
 
 
