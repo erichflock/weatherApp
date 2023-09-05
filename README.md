@@ -1,6 +1,9 @@
 # WeatherApp
 Weather app that allows users to access real-time or forecasted weather data for their location or any other location of their choice
 
+Important: 
+To test the app, please add an API key from OpenWeatherMap (https://openweathermap.org/appid) to the following path: https://github.com/erichflock/weatherApp/blob/main/WeatherApp/Network/NetworkConfig.swift
+
 Additional Features:
 * Multiple temperature units (Celsius and Fahrenheit).
 * Light and dark mode support.
