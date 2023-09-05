@@ -17,13 +17,17 @@ struct SearchCityView: View {
             ForEach(viewModel.cities) { city in
                 if let title = viewModel.createTitle(for: city) {
                     Text(title)
+                        .listRowBackground(Color.clear)
                         .onTapGesture {
                             viewModel.didSelect(city: city)
                             dismiss()
                         }
                 }
             }
+            
         }
+        .listStyle(.plain)
+        .scrollContentBackground(.hidden)
         .navigationTitle("Search City")
         .searchable(text: $viewModel.searchedCity,
                     placement: .navigationBarDrawer(displayMode: .always),
@@ -36,8 +40,26 @@ struct SearchCityView: View {
                 await viewModel.fetchCities()
             }
         }
-        .background(
+        .overlay {
+            if viewModel.cities.isEmpty {
+                noDataAvailableView
+            }
+        }
+        .background {
             WeatherGradientView()
-        )
+        }
+    }
+    
+    private var noDataAvailableView: some View {
+        VStack(alignment: .center, spacing: 10) {
+            Text("No cities. Please search it again.")
+                .font(.system(size: 18))
+                .foregroundStyle(.secondary)
+                .multilineTextAlignment(.center)
+                .padding(.horizontal, 110)
+            Image(systemName: "location.magnifyingglass")
+                .font(.system(size: 50))
+        }
+        .offset(y: -50)
     }
 }
