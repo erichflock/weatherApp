@@ -93,7 +93,8 @@ struct CityView: View {
                 Text($0.rawValue.capitalized)
             }
         }
-        .pickerStyle(.menu)
+        .frame(width: 200)
+        .pickerStyle(.segmented)
     }
     
     private var locationButton: some View {
