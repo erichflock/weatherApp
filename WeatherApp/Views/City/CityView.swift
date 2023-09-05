@@ -63,8 +63,7 @@ struct CityView: View {
             VStack(spacing: 8) {
                 if let imageName = viewModel.weather?.condition?.imageName {
                     Image(systemName: imageName)
-                        .symbolRenderingMode(.palette)
-                        .foregroundStyle(.gray, .blue)
+                        .symbolRenderingMode(.multicolor)
                         .font(.system(size: 30))
                 }
                 if let condition = viewModel.weather?.condition?.name {
