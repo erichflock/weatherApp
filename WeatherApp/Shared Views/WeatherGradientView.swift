@@ -10,7 +10,7 @@ import SwiftUI
 struct WeatherGradientView: View {
     
     @Environment(\.colorScheme) var colorScheme: ColorScheme
-    let colorsOfDarkSky = [Color(red: 0.02, green: 0.2, blue: 0.4), Color.gray]
+    let colorsOfDarkSky = [Color(red: 0, green: 0, blue: 0.1), Color.gray]
     let colorsOfLightSky = [Color(red: 0.8, green: 0.9, blue: 0.98), Color.white]
     
     var body: some View {
