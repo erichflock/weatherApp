@@ -7,7 +7,5 @@
 		<key>UILaunchScreen</key>
 		<string></string>
 	</dict>
-	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>The app uses your location to show to you the weather conditions in your region</string>
 </dict>
 </plist>
