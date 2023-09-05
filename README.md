@@ -23,9 +23,10 @@ https://github.com/erichflock/weatherApp/assets/10236662/eda26763-d07e-43e5-896c
 
 Screenshots:
 
-![Weather_Celsius](https://github.com/erichflock/weatherApp/assets/10236662/582d0145-3e9e-4ed8-8e44-d1ad7ab85786)
-![Weather_Fahrenheit](https://github.com/erichflock/weatherApp/assets/10236662/13ca5e6a-3bc9-4f18-b73c-8e2f4b1fd9ee)
-![Search_Empty](https://github.com/erichflock/weatherApp/assets/10236662/a114a114-14fc-4dd8-bfaa-0a54240592bd)
-![Search_Results](https://github.com/erichflock/weatherApp/assets/10236662/fed243ff-2544-4c4c-94db-f624d6b7eca8)
+![Weather_Celsius](https://github.com/erichflock/weatherApp/assets/10236662/3e8f2166-dd7e-4915-af37-a02099318616)
+![Weather_Fahrenheit](https://github.com/erichflock/weatherApp/assets/10236662/c1eea57e-c74a-4d7e-8d4e-c32cf74ab57f)
+![Search_Empty](https://github.com/erichflock/weatherApp/assets/10236662/c71cd363-d88f-4854-96a2-2a56852953e3)
+![Search_Results](https://github.com/erichflock/weatherApp/assets/10236662/082652e8-0daa-484d-8cc5-f4c771c2cf4e)
+
 
 
