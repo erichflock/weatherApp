@@ -62,7 +62,7 @@ final class SearchCityViewModelTests: XCTestCase {
         XCTAssertTrue(sut.cities.isEmpty, "precondition")
         
         await sut.fetchCities()
-        await addDelayToAllowCitiesToBeUpdated()
+        await addDelay(1) //allow cities to be updated
         
         XCTAssertEqual(geoCodingAPISpy.getCitiesCallCount, 1)
         XCTAssertEqual(geoCodingAPISpy.apiCities, expectedReturnedApiCities)
@@ -178,10 +178,6 @@ final class SearchCityViewModelTests: XCTestCase {
 
 //MARK: Helpers
 extension SearchCityViewModelTests {
-    
-    private func addDelayToAllowCitiesToBeUpdated(_ delayInSeconds: Int = 1) async {
-        try? await Task.sleep(for: .seconds(delayInSeconds))
-    }
     
     private func makeSUT(geoCodingAPI: GeoCodingAPIProtocol = GeoCodingAPISpy()) -> SearchCityViewModel {
         @ObservedObject var locationMock = LocationMock()

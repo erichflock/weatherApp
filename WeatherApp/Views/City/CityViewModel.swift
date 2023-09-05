@@ -12,7 +12,9 @@ class CityViewModel: ObservableObject {
     
     @Published var temperatureUnit: TemperatureUnit = .celsius {
         didSet {
-            fetchWeatherData()
+            Task {
+                await fetchWeatherData()
+            }
         }
     }
     
@@ -25,7 +27,9 @@ class CityViewModel: ObservableObject {
     
     @Published var location: CLLocationCoordinate2D? {
         didSet {
-            fetchWeatherData()
+            Task {
+                await fetchWeatherData()
+            }
         }
     }
     
@@ -40,21 +44,19 @@ class CityViewModel: ObservableObject {
         locationManager.requestLocation()
     }
     
-    func fetchWeatherData() {
+    func fetchWeatherData() async {
         guard let lat = location?.latitude, let lon = location?.longitude else { return }
     
         setLoading(true)
         
-        Task {
-            do {
-                let responseApiModel = try await currentWeatherAPI.fetchData(lat: lat, lon: lon, units: temperatureUnit.convertToApiUnit())
-                DispatchQueue.main.async { [weak self] in
-                    self?.weather = Weather.mapper(apiModel: responseApiModel)
-                    self?.setLoading(false)
-                }
-            } catch {
-                setLoading(false)
+        do {
+            let responseApiModel = try await currentWeatherAPI.fetchData(lat: lat, lon: lon, units: temperatureUnit.convertToApiUnit())
+            DispatchQueue.main.async { [weak self] in
+                self?.weather = Weather.mapper(apiModel: responseApiModel)
+                self?.setLoading(false)
             }
+        } catch {
+            setLoading(false)
         }
     }
     
