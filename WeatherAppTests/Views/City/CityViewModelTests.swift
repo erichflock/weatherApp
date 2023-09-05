@@ -30,6 +30,17 @@ final class CityViewModelTests: XCTestCase {
         XCTAssertEqual(sut.fetchWeatherDataCallCount, 1)
     }
     
+    func test_formatTemperature_shouldReturnStringWithoutDecimalPoints() {
+        let sut = makeSUT()
+        
+        XCTAssertEqual(sut.format(temperature: 10.000), "10")
+        XCTAssertEqual(sut.format(temperature: -11.500), "-12")
+        XCTAssertEqual(sut.format(temperature: -11.400), "-11")
+        XCTAssertEqual(sut.format(temperature: 50.10), "50")
+        XCTAssertEqual(sut.format(temperature: -20.3333333333), "-20")
+        XCTAssertEqual(sut.format(temperature: 110), "110")
+    }
+    
 }
 
 //MARK: Helpers
