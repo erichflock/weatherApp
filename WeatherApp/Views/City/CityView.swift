@@ -123,8 +123,6 @@ struct CityView: View {
                 .multilineTextAlignment(.center)
                 .padding(.horizontal, 110)
             Image(systemName: "globe.americas.fill")
-                .symbolRenderingMode(.palette)
-                .foregroundStyle(.blue)
                 .font(.system(size: 50))
         }
         .padding(.bottom, 50)
@@ -139,8 +137,6 @@ struct CityView: View {
                     .multilineTextAlignment(.center)
                     .padding(.horizontal, 110)
                 Image(systemName: "icloud.slash.fill")
-                    .symbolRenderingMode(.palette)
-                    .foregroundStyle(.blue)
                     .font(.system(size: 50))
             }
             .padding(.bottom, 50)
